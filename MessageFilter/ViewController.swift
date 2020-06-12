@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         DataStoreManager.allData()
       
-        
+       
         
 //        let fileManager = FileManager.default
 //        fileManager(cont)
