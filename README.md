@@ -1,2 +1,2 @@
 # MessageFilter
-短信过滤
+使用 Message Filter Extension实现短信过滤功能

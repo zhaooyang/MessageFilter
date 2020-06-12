@@ -13,7 +13,36 @@
 		0C4E18F3249360D100CA608A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4E18F1249360D100CA608A /* Main.storyboard */; };
 		0C4E18F5249360DC00CA608A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4E18F4249360DC00CA608A /* Assets.xcassets */; };
 		0C4E18F8249360DC00CA608A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4E18F6249360DC00CA608A /* LaunchScreen.storyboard */; };
+		0C4E194D249372D700CA608A /* MessageFilterKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C4E194B249372D700CA608A /* MessageFilterKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C4E1950249372D700CA608A /* MessageFilterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E1949249372D700CA608A /* MessageFilterKit.framework */; };
+		0C4E1951249372D700CA608A /* MessageFilterKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E1949249372D700CA608A /* MessageFilterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C4E1955249372E200CA608A /* MessageFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E1942249371D000CA608A /* MessageFilterManager.swift */; };
+		0C4E195824937B0900CA608A /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E195724937B0900CA608A /* DataStoreManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0C4E194E249372D700CA608A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C4E18E0249360D100CA608A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C4E1948249372D700CA608A;
+			remoteInfo = MessageFilterKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0C4E193F24936F8900CA608A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0C4E1951249372D700CA608A /* MessageFilterKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C4E18E8249360D100CA608A /* MessageFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +53,24 @@
 		0C4E18F4249360DC00CA608A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4E18F7249360DC00CA608A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C4E18F9249360DC00CA608A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C4E1942249371D000CA608A /* MessageFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFilterManager.swift; sourceTree = "<group>"; };
+		0C4E1949249372D700CA608A /* MessageFilterKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessageFilterKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4E194B249372D700CA608A /* MessageFilterKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageFilterKit.h; sourceTree = "<group>"; };
+		0C4E194C249372D700CA608A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C4E195624937A1500CA608A /* MessageFilter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessageFilter.entitlements; sourceTree = "<group>"; };
+		0C4E195724937B0900CA608A /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0C4E18E5249360D100CA608A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C4E1950249372D700CA608A /* MessageFilterKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C4E1946249372D700CA608A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4E18EA249360D100CA608A /* MessageFilter */,
+				0C4E194A249372D700CA608A /* MessageFilterKit */,
 				0C4E18E9249360D100CA608A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4E18E8249360D100CA608A /* MessageFilter.app */,
+				0C4E1949249372D700CA608A /* MessageFilterKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,6 +101,7 @@
 		0C4E18EA249360D100CA608A /* MessageFilter */ = {
 			isa = PBXGroup;
 			children = (
+				0C4E195624937A1500CA608A /* MessageFilter.entitlements */,
 				0C4E18EB249360D100CA608A /* AppDelegate.swift */,
 				0C4E18ED249360D100CA608A /* SceneDelegate.swift */,
 				0C4E18EF249360D100CA608A /* ViewController.swift */,
@@ -67,7 +113,29 @@
 			path = MessageFilter;
 			sourceTree = "<group>";
 		};
+		0C4E194A249372D700CA608A /* MessageFilterKit */ = {
+			isa = PBXGroup;
+			children = (
+				0C4E194B249372D700CA608A /* MessageFilterKit.h */,
+				0C4E1942249371D000CA608A /* MessageFilterManager.swift */,
+				0C4E195724937B0900CA608A /* DataStoreManager.swift */,
+				0C4E194C249372D700CA608A /* Info.plist */,
+			);
+			path = MessageFilterKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0C4E1944249372D700CA608A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C4E194D249372D700CA608A /* MessageFilterKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		0C4E18E7249360D100CA608A /* MessageFilter */ = {
@@ -77,15 +145,35 @@
 				0C4E18E4249360D100CA608A /* Sources */,
 				0C4E18E5249360D100CA608A /* Frameworks */,
 				0C4E18E6249360D100CA608A /* Resources */,
+				0C4E193F24936F8900CA608A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0C4E194F249372D700CA608A /* PBXTargetDependency */,
 			);
 			name = MessageFilter;
 			productName = MessageFilter;
 			productReference = 0C4E18E8249360D100CA608A /* MessageFilter.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0C4E1948249372D700CA608A /* MessageFilterKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C4E1952249372D700CA608A /* Build configuration list for PBXNativeTarget "MessageFilterKit" */;
+			buildPhases = (
+				0C4E1944249372D700CA608A /* Headers */,
+				0C4E1945249372D700CA608A /* Sources */,
+				0C4E1946249372D700CA608A /* Frameworks */,
+				0C4E1947249372D700CA608A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MessageFilterKit;
+			productName = MessageFilterKit;
+			productReference = 0C4E1949249372D700CA608A /* MessageFilterKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -98,6 +186,9 @@
 				ORGANIZATIONNAME = zhaoyang;
 				TargetAttributes = {
 					0C4E18E7249360D100CA608A = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					0C4E1948249372D700CA608A = {
 						CreatedOnToolsVersion = 11.1;
 					};
 				};
@@ -116,6 +207,7 @@
 			projectRoot = "";
 			targets = (
 				0C4E18E7249360D100CA608A /* MessageFilter */,
+				0C4E1948249372D700CA608A /* MessageFilterKit */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +220,13 @@
 				0C4E18F8249360DC00CA608A /* LaunchScreen.storyboard in Resources */,
 				0C4E18F5249360DC00CA608A /* Assets.xcassets in Resources */,
 				0C4E18F3249360D100CA608A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C4E1947249372D700CA608A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +243,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0C4E1945249372D700CA608A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C4E1955249372E200CA608A /* MessageFilterManager.swift in Sources */,
+				0C4E195824937B0900CA608A /* DataStoreManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C4E194F249372D700CA608A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C4E1948249372D700CA608A /* MessageFilterKit */;
+			targetProxy = 0C4E194E249372D700CA608A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0C4E18F1249360D100CA608A /* Main.storyboard */ = {
@@ -283,34 +399,100 @@
 		0C4E18FD249360DC00CA608A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MessageFilter/MessageFilter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6FTWBBG8R7;
 				INFOPLIST_FILE = MessageFilter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.MessageFilter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayer.MessageFilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		0C4E18FE249360DC00CA608A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MessageFilter/MessageFilter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6FTWBBG8R7;
 				INFOPLIST_FILE = MessageFilter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.MessageFilter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayer.MessageFilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		0C4E1953249372D700CA608A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6FTWBBG8R7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MessageFilterKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayer.MessageFilterKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0C4E1954249372D700CA608A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6FTWBBG8R7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MessageFilterKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayer.MessageFilterKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -331,6 +513,15 @@
 			buildConfigurations = (
 				0C4E18FD249360DC00CA608A /* Debug */,
 				0C4E18FE249360DC00CA608A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C4E1952249372D700CA608A /* Build configuration list for PBXNativeTarget "MessageFilterKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C4E1953249372D700CA608A /* Debug */,
+				0C4E1954249372D700CA608A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
