@@ -17,9 +17,14 @@ class ViewController: UIViewController {
         
         _ = MessageFilterManager.filterMessage(messageBody: "test")
         
-        DataStoreManager.allData()
-      
-       
+//        _ = DataStoreManager.allData()
+    
+        
+//        print(dic.ke)
+        
+
+//        DataStoreManager.delete(filterInfo: FilterInfo(rule: "test", messageBody: true, regular: false), fileName: "20200613")
+//        DataStoreManager.save(filterInfo: FilterInfo(rule: "rule", messageBody: true, regular: false))
         
 //        let fileManager = FileManager.default
 //        fileManager(cont)

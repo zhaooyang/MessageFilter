@@ -15,6 +15,8 @@ public class MessageFilterManager: NSObject {
 
     public class func filterMessage(messageBody: String) -> Bool {
         print("messageBody: \(messageBody)")
+        
+        print(DataStoreManager.allFilterData() as Any)
         return true
     }
 }
