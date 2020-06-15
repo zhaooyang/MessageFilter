@@ -13,10 +13,52 @@ import UIKit
 
 public class MessageFilterManager: NSObject {
 
-    public class func filterMessage(messageBody: String) -> Bool {
-        print("messageBody: \(messageBody)")
-        
-        print(DataStoreManager.allFilterData() as Any)
-        return true
+    public class func filterMessage(sender: String, messageBody: String) -> Bool {
+
+        if sender.count > 0 || messageBody.count > 0 {
+            guard let filterArray = DataStoreManager.allFilterData() else {
+                return false
+            }
+            var match = false
+            for filterInfo in filterArray {
+                print(filterInfo)
+                if filterInfo.messageBody {
+                    if messageBody.count > 0 {
+                        match = filterResult(message: messageBody, regular: filterInfo.regular, rule: filterInfo.rule)
+                    }
+                } else {
+                    if sender.count > 0 {
+                        match = filterResult(message: sender, regular: filterInfo.regular, rule: filterInfo.rule)
+                    }
+                }
+                if match {
+                    return true
+                }
+            }
+        }
+        return false
     }
+    
+    private class func filterResult(message: String, regular: Bool, rule: String) -> Bool {
+        if regular {
+            do {
+               let regex = try NSRegularExpression(pattern: rule, options: .caseInsensitive)
+                let matchNum = regex.numberOfMatches(in: message, options: [], range: NSRange(location: 0, length: message.count))
+                if matchNum == 0 {
+                    return false
+                }
+                return true
+            } catch  {
+                return false
+            }
+        } else {
+            if message.contains(rule) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    
 }

@@ -108,7 +108,6 @@ public class DataStoreManager: NSObject {
                     caches.add(filterInfo.saveMessage())
                     caches.write(toFile: cachePath(fileName: getDateFormatString()), atomically: true)
                 }
-                print(caches)
             } else {
                 do {
                     try FileManager.default.createDirectory(atPath: cachePath(fileName: ""), withIntermediateDirectories: true, attributes: nil)
