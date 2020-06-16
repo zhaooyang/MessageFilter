@@ -39,6 +39,21 @@ public class MessageFilterManager: NSObject {
         return false
     }
     
+    public class func getfilterMessageResult(rule: String, content: String, regular: Bool) -> [NSTextCheckingResult]? {
+        if rule.count == 0 || content.count == 0 {
+            return nil
+        }
+        do {
+             let regex = try NSRegularExpression(pattern: rule, options: .caseInsensitive)
+            let array = regex.matches(in: content, options: [], range: NSRange(location: 0, length: content.count))
+            return array
+        } catch  {
+            return nil
+        }
+    }
+    
+    
+    
     private class func filterResult(message: String, regular: Bool, rule: String) -> Bool {
         if regular {
             do {

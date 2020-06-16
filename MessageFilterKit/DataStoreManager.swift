@@ -22,7 +22,7 @@ public struct FilterInfo {
         self.rule = rule
     }
     
-    func saveMessage() -> String {
+    public func saveMessage() -> String {
         if rule.count > 0 {
             return String(messageBody) + "|+|" + String(regular) + "|+|" + rule
         }
