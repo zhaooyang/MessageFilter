@@ -17,6 +17,8 @@
 		0C4E1951249372D700CA608A /* MessageFilterKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4E1949249372D700CA608A /* MessageFilterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C4E1955249372E200CA608A /* MessageFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E1942249371D000CA608A /* MessageFilterManager.swift */; };
 		0C4E195824937B0900CA608A /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E195724937B0900CA608A /* DataStoreManager.swift */; };
+		0CC87BCF2498CC3E00F5F4B8 /* MessageFilterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC87BCE2498CC3E00F5F4B8 /* MessageFilterExtension.swift */; };
+		0CC87BD32498CC3E00F5F4B8 /* messageFilterExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0CC87BCC2498CC3E00F5F4B8 /* messageFilterExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0CD039912498556900B3B6E5 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD039902498556900B3B6E5 /* HistoryTableViewController.swift */; };
 		0CD039952498614400B3B6E5 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD039942498614400B3B6E5 /* RuleViewController.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +30,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0C4E1948249372D700CA608A;
 			remoteInfo = MessageFilterKit;
+		};
+		0CC87BD12498CC3E00F5F4B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C4E18E0249360D100CA608A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0CC87BCB2498CC3E00F5F4B8;
+			remoteInfo = messageFilterExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -41,6 +50,17 @@
 				0C4E1951249372D700CA608A /* MessageFilterKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CC87BD72498CC3E00F5F4B8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0CC87BD32498CC3E00F5F4B8 /* messageFilterExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -59,6 +79,9 @@
 		0C4E194C249372D700CA608A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C4E195624937A1500CA608A /* MessageFilter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessageFilter.entitlements; sourceTree = "<group>"; };
 		0C4E195724937B0900CA608A /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
+		0CC87BCC2498CC3E00F5F4B8 /* messageFilterExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = messageFilterExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CC87BCE2498CC3E00F5F4B8 /* MessageFilterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFilterExtension.swift; sourceTree = "<group>"; };
+		0CC87BD02498CC3E00F5F4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CD039902498556900B3B6E5 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		0CD039942498614400B3B6E5 /* RuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +102,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CC87BC92498CC3E00F5F4B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +117,7 @@
 			children = (
 				0C4E18EA249360D100CA608A /* MessageFilter */,
 				0C4E194A249372D700CA608A /* MessageFilterKit */,
+				0CC87BCD2498CC3E00F5F4B8 /* messageFilterExtension */,
 				0C4E18E9249360D100CA608A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +127,7 @@
 			children = (
 				0C4E18E8249360D100CA608A /* MessageFilter.app */,
 				0C4E1949249372D700CA608A /* MessageFilterKit.framework */,
+				0CC87BCC2498CC3E00F5F4B8 /* messageFilterExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +159,15 @@
 			path = MessageFilterKit;
 			sourceTree = "<group>";
 		};
+		0CC87BCD2498CC3E00F5F4B8 /* messageFilterExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0CC87BCE2498CC3E00F5F4B8 /* MessageFilterExtension.swift */,
+				0CC87BD02498CC3E00F5F4B8 /* Info.plist */,
+			);
+			path = messageFilterExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -149,11 +190,13 @@
 				0C4E18E5249360D100CA608A /* Frameworks */,
 				0C4E18E6249360D100CA608A /* Resources */,
 				0C4E193F24936F8900CA608A /* Embed Frameworks */,
+				0CC87BD72498CC3E00F5F4B8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				0C4E194F249372D700CA608A /* PBXTargetDependency */,
+				0CC87BD22498CC3E00F5F4B8 /* PBXTargetDependency */,
 			);
 			name = MessageFilter;
 			productName = MessageFilter;
@@ -178,6 +221,23 @@
 			productReference = 0C4E1949249372D700CA608A /* MessageFilterKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		0CC87BCB2498CC3E00F5F4B8 /* messageFilterExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CC87BD42498CC3E00F5F4B8 /* Build configuration list for PBXNativeTarget "messageFilterExtension" */;
+			buildPhases = (
+				0CC87BC82498CC3E00F5F4B8 /* Sources */,
+				0CC87BC92498CC3E00F5F4B8 /* Frameworks */,
+				0CC87BCA2498CC3E00F5F4B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = messageFilterExtension;
+			productName = messageFilterExtension;
+			productReference = 0CC87BCC2498CC3E00F5F4B8 /* messageFilterExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +252,9 @@
 						CreatedOnToolsVersion = 11.1;
 					};
 					0C4E1948249372D700CA608A = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					0CC87BCB2498CC3E00F5F4B8 = {
 						CreatedOnToolsVersion = 11.1;
 					};
 				};
@@ -211,6 +274,7 @@
 			targets = (
 				0C4E18E7249360D100CA608A /* MessageFilter */,
 				0C4E1948249372D700CA608A /* MessageFilterKit */,
+				0CC87BCB2498CC3E00F5F4B8 /* messageFilterExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -227,6 +291,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0C4E1947249372D700CA608A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CC87BCA2498CC3E00F5F4B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,6 +327,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CC87BC82498CC3E00F5F4B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CC87BCF2498CC3E00F5F4B8 /* MessageFilterExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -263,6 +342,11 @@
 			isa = PBXTargetDependency;
 			target = 0C4E1948249372D700CA608A /* MessageFilterKit */;
 			targetProxy = 0C4E194E249372D700CA608A /* PBXContainerItemProxy */;
+		};
+		0CC87BD22498CC3E00F5F4B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0CC87BCB2498CC3E00F5F4B8 /* messageFilterExtension */;
+			targetProxy = 0CC87BD12498CC3E00F5F4B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -406,18 +490,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessageFilter/MessageFilter.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZMX4C3B995;
+				DEVELOPMENT_TEAM = 9CN4829674;
 				INFOPLIST_FILE = MessageFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.maidanba;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = mandanba_PF;
+				PROVISIONING_PROFILE_SPECIFIER = MaiDanBaUAT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -429,18 +513,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessageFilter/MessageFilter.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZMX4C3B995;
+				DEVELOPMENT_TEAM = 9CN4829674;
 				INFOPLIST_FILE = MessageFilter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.maidanba;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = mandanba_PF;
+				PROVISIONING_PROFILE_SPECIFIER = MaiDanBaUAT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -464,7 +548,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.maidanbaKit;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -494,7 +578,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankcomm.maidanbaKit;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -503,6 +587,50 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0CC87BD52498CC3E00F5F4B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = messageFilterExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0CC87BD62498CC3E00F5F4B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = messageFilterExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -532,6 +660,15 @@
 			buildConfigurations = (
 				0C4E1953249372D700CA608A /* Debug */,
 				0C4E1954249372D700CA608A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CC87BD42498CC3E00F5F4B8 /* Build configuration list for PBXNativeTarget "messageFilterExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CC87BD52498CC3E00F5F4B8 /* Debug */,
+				0CC87BD62498CC3E00F5F4B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
