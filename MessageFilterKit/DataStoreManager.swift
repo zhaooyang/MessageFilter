@@ -8,8 +8,8 @@
 
 import UIKit
 
-let keyDataGroup = "group.dayer.messageFilter.shareData"
-
+let keyDataGroup = "group.zdayer.messageFilter.shareData"
+let keyCacheDate = "CacheDate"
 
 public struct FilterInfo {
     public var messageBody: Bool   // 是否为消息体
@@ -58,10 +58,10 @@ public struct FilterInfo {
 public class DataStoreManager: NSObject {
 
     public class func allData() -> NSDictionary? {
-        if let subpaths = FileManager.default.subpaths(atPath: cachePath(fileName: "")) {
+        if let cacheDate = NSArray(contentsOf: cachePath(fileName: keyCacheDate)) {
             let allData: NSMutableDictionary = [:]
-            for fileName in subpaths.sorted() {
-                if let array = NSArray(contentsOfFile: cachePath(fileName: fileName)) {
+            for fileName in cacheDate {
+                if let array = NSArray(contentsOf: cachePath(fileName: fileName as! String)) {
                     var marray = [FilterInfo]()
                     for message in array {
                         if let messageStr: String = message as? String {
@@ -70,7 +70,7 @@ public class DataStoreManager: NSObject {
                             }
                         }
                     }
-                    allData.setObject(marray, forKey: fileName as NSString)
+                    allData.setObject(marray, forKey: fileName as! NSString)
                 }
             }
             return allData
@@ -80,11 +80,10 @@ public class DataStoreManager: NSObject {
     
     
     class func allFilterData() -> Array<FilterInfo>? {
-        
-        if let subpaths = FileManager.default.subpaths(atPath: cachePath(fileName: "")) {
+        if let cacheDate = NSArray(contentsOf: cachePath(fileName: keyCacheDate)) {
             var allData = [FilterInfo]()
-            for fileName in subpaths.sorted() {
-                if let array = NSArray(contentsOfFile: cachePath(fileName: fileName)) {
+            for fileName in cacheDate {
+                if let array = NSArray(contentsOf: cachePath(fileName: fileName as! String)) {
                     for message in array {
                         if let messageStr: String = message as? String {
                             if messageStr.count > 0 {
@@ -103,17 +102,23 @@ public class DataStoreManager: NSObject {
     public class func save(filterInfo: FilterInfo) {
         if filterInfo.rule.count > 0 {
             let saveMessage = filterInfo.saveMessage()
-            if let caches = NSMutableArray(contentsOfFile: cachePath(fileName: getDateFormatString())) {
+            if let caches = NSMutableArray(contentsOf: cachePath(fileName: getDateFormatString())) {
                 if !caches.contains(saveMessage) {
                     caches.add(filterInfo.saveMessage())
-                    caches.write(toFile: cachePath(fileName: getDateFormatString()), atomically: true)
+                    caches.write(to: cachePath(fileName: getDateFormatString()), atomically: true)
                 }
             } else {
-                do {
-                    try FileManager.default.createDirectory(atPath: cachePath(fileName: ""), withIntermediateDirectories: true, attributes: nil)
-                } catch { return }
                 let cache: NSArray = [saveMessage]
-                cache.write(toFile: cachePath(fileName: getDateFormatString()), atomically: true)
+                if let cacheDate = NSMutableArray(contentsOf: cachePath(fileName: keyCacheDate)) {
+                    if !cacheDate.contains(getDateFormatString()) {
+                        cacheDate.add(getDateFormatString())
+                        cacheDate.write(to: cachePath(fileName: keyCacheDate), atomically: true)
+                    }
+                } else {
+                    let cacheDate: NSArray = [getDateFormatString()]
+                    cacheDate.write(to: cachePath(fileName: keyCacheDate), atomically: true)
+                }
+                cache.write(to: cachePath(fileName: getDateFormatString()), atomically: true)
             }
         }
     }
@@ -122,15 +127,21 @@ public class DataStoreManager: NSObject {
     public class func delete(filterInfo: FilterInfo, fileName: String) {
         if filterInfo.rule.count > 0 && fileName.count > 0 {
             let saveMessage = filterInfo.saveMessage()
-            if let caches = NSMutableArray(contentsOfFile: cachePath(fileName: fileName)) {
+            if let caches = NSMutableArray(contentsOf: cachePath(fileName: fileName)) {
                 if caches.contains(saveMessage) {
                     caches.remove(saveMessage)
                     if caches.count == 0 {
                         do {
-                            try FileManager.default.removeItem(atPath: cachePath(fileName: fileName))
+                            try FileManager.default.removeItem(at: cachePath(fileName: fileName))
+                            if let cacheDate = NSMutableArray(contentsOf: cachePath(fileName: keyCacheDate)) {
+                                if cacheDate.contains(fileName) {
+                                    cacheDate.remove(fileName)
+                                    cacheDate.write(to: cachePath(fileName: keyCacheDate), atomically: true)
+                                }
+                            }
                         } catch {}
                     } else {
-                        caches.write(toFile: cachePath(fileName: fileName), atomically: true)
+                        caches.write(to: cachePath(fileName: fileName), atomically: true)
                     }
                 }
             }
@@ -138,8 +149,12 @@ public class DataStoreManager: NSObject {
     }
     
     
-    class func cachePath(fileName: String) -> String {
-        return (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? NSHomeDirectory()).appending("/rules/"+fileName)
+    class func cachePath(fileName: String) -> URL {
+        guard var path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: keyDataGroup) else {
+            return URL(string: "")!
+        }
+        path.appendPathComponent(fileName+".txt")
+        return path
     }
 
     

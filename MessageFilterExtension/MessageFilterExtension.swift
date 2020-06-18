@@ -1,13 +1,14 @@
 //
 //  MessageFilterExtension.swift
-//  messageFilterExtension
+//  MessageFilterExtension
 //
-//  Created by zhaoyang on 2020/6/16.
+//  Created by zhaoyang on 2020/6/18.
 //  Copyright © 2020 zhaoyang. All rights reserved.
 //
 
 import IdentityLookup
 import MessageFilterKit
+
 final class MessageFilterExtension: ILMessageFilterExtension {}
 
 extension MessageFilterExtension: ILMessageFilterQueryHandling {
@@ -48,21 +49,10 @@ extension MessageFilterExtension: ILMessageFilterQueryHandling {
 
     private func offlineAction(for queryRequest: ILMessageFilterQueryRequest) -> ILMessageFilterAction {
         // Replace with logic to perform offline check whether to filter first (if possible).
-        if let sender = queryRequest.sender {
-            if sender.count > 0 {
-                if MessageFilterManager.filterMessage(sender: sender, messageBody: "") {
-                    return .filter
-                }
-            }
+        if MessageFilterManager.filterMessage(sender: queryRequest.sender, messageBody: queryRequest.messageBody) {
+            return .filter
         }
         
-        if let messageBody = queryRequest.messageBody {
-            if messageBody.count > 0 {
-                if  MessageFilterManager.filterMessage(sender: "", messageBody: messageBody) {
-                    return .filter
-                }
-            }
-        }
         return .none
     }
 

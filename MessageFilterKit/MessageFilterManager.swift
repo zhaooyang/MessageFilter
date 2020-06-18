@@ -9,33 +9,69 @@
 import UIKit
 
 
+enum FilterType {
+    case None
+    case All
+    case Sender
+    case Message
+}
+
 
 
 public class MessageFilterManager: NSObject {
 
-    public class func filterMessage(sender: String, messageBody: String) -> Bool {
-
-        if sender.count > 0 || messageBody.count > 0 {
+    public class func filterMessage(sender: String?, messageBody: String?) -> Bool {
+        var type: FilterType = .None
+        var senderInfo = ""
+        var messageBodyInfo = ""
+        if let senderStr = sender, let messageBodyStr = messageBody {
+            if senderStr.count > 0 && messageBodyStr.count > 0 {
+                senderInfo = senderStr
+                messageBodyInfo = messageBodyStr
+                type = .All
+            }
+        } else if let senderStr = sender {
+            if senderStr.count > 0 {
+                senderInfo = senderStr
+                type = .Sender
+            }
+        } else if let messageBodyStr = messageBody {
+            if messageBodyStr.count > 0 {
+                messageBodyInfo = messageBodyStr
+                type = .Message
+            }
+        }
+        
             guard let filterArray = DataStoreManager.allFilterData() else {
                 return false
             }
             var match = false
             for filterInfo in filterArray {
-                print(filterInfo)
-                if filterInfo.messageBody {
-                    if messageBody.count > 0 {
-                        match = filterResult(message: messageBody, regular: filterInfo.regular, rule: filterInfo.rule)
+                switch type {
+                case .All:
+                    if filterInfo.messageBody {
+                        match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
+                    } else {
+                        match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
                     }
-                } else {
-                    if sender.count > 0 {
-                        match = filterResult(message: sender, regular: filterInfo.regular, rule: filterInfo.rule)
+                    break
+                case .Sender:
+                    if filterInfo.messageBody {
+                        break
                     }
+                    match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
+                case .Message:
+                    if filterInfo.messageBody {
+                        match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
+                    }
+                    break
+                case .None:
+                    break
                 }
                 if match {
                     return true
                 }
             }
-        }
         return false
     }
     
