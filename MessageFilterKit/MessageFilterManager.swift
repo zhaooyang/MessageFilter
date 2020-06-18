@@ -29,6 +29,12 @@ public class MessageFilterManager: NSObject {
                 senderInfo = senderStr
                 messageBodyInfo = messageBodyStr
                 type = .All
+            } else if senderStr.count == 0 {
+                messageBodyInfo = messageBodyStr
+                type = .Message
+            } else if messageBodyStr.count == 0 {
+                senderInfo = senderStr
+                type = .Sender
             }
         } else if let senderStr = sender {
             if senderStr.count > 0 {

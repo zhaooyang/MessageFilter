@@ -81,24 +81,33 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let fileManager = FileManager.default
+        let send: String? = nil
         
-        let url = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.zdayer.messageFilter.shareData")
-//        let fileUrl = url?.appendingPathComponent("dome.plist")
-        let fileUrl = url?.appendingPathComponent("dome")
-        guard let fileURL = fileUrl else {
-            return
+        if let sender = send {
+            print(sender)
         }
-    
-        do {
-            try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: true, attributes: nil)
-            print(fileURL)
-        } catch  {
-            print("false")
-        }
+        print(send as Any)
         
         
-        print(fileManager.subpaths(atPath: url!.absoluteString) as Any)
+        
+//        let fileManager = FileManager.default
+//
+//        let url = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.zdayer.messageFilter.shareData")
+////        let fileUrl = url?.appendingPathComponent("dome.plist")
+//        let fileUrl = url?.appendingPathComponent("dome")
+//        guard let fileURL = fileUrl else {
+//            return
+//        }
+//
+//        do {
+//            try fileManager.createDirectory(at: fileURL, withIntermediateDirectories: true, attributes: nil)
+//            print(fileURL)
+//        } catch  {
+//            print("false")
+//        }
+//
+//
+//        print(fileManager.subpaths(atPath: url!.absoluteString) as Any)
         
 //        do {
 //            let array : NSArray = ["abc", "bcd"]
@@ -120,12 +129,12 @@ class ViewController: UIViewController {
 //        let sub = FileManager.default.subpaths(atPath: url!.absoluteString)
 //        print("sub = \(sub as Any)")
 //
-        do {
-            let subd = try FileManager.default.subpathsOfDirectory(atPath: url!.absoluteString)
-            print("subd = \(subd as Any)")
-        } catch  {
-            print("====")
-        }
+//        do {
+//            let subd = try FileManager.default.subpathsOfDirectory(atPath: url!.absoluteString)
+//            print("subd = \(subd as Any)")
+//        } catch  {
+//            print("====")
+//        }
 //
 
     }
