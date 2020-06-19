@@ -49,7 +49,8 @@ extension MessageFilterExtension: ILMessageFilterQueryHandling {
 
     private func offlineAction(for queryRequest: ILMessageFilterQueryRequest) -> ILMessageFilterAction {
         // Replace with logic to perform offline check whether to filter first (if possible).
-        if MessageFilterManager.filterMessage(sender: queryRequest.sender, messageBody: queryRequest.messageBody) {
+        let (match, _) = MessageFilterManager.filterMessage(sender: queryRequest.sender, messageBody: queryRequest.messageBody)
+        if match {
             return .filter
         }
         

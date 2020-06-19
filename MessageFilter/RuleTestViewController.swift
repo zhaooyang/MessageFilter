@@ -28,10 +28,10 @@ class RuleTestViewController: UIViewController {
         let senderStr = senderTextFileld.text
         let messageStr = filterMessageTextView.text
         
-        print(MessageFilterManager.filterMessage(sender: senderStr, messageBody: messageStr))
-        
-        
-        
+        let (match, filterInfo) = MessageFilterManager.filterMessage(sender: senderStr, messageBody: messageStr)
+        if match {
+            filterResultTextView.text = filterInfo?.saveMessage()
+        }
         
     }
     

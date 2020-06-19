@@ -9,76 +9,31 @@
 import UIKit
 
 
-enum FilterType {
-    case None
-    case All
-    case Sender
-    case Message
-}
-
-
-
 public class MessageFilterManager: NSObject {
 
-    public class func filterMessage(sender: String?, messageBody: String?) -> Bool {
-        var type: FilterType = .None
-        var senderInfo = ""
-        var messageBodyInfo = ""
-        if let senderStr = sender, let messageBodyStr = messageBody {
-            if senderStr.count > 0 && messageBodyStr.count > 0 {
-                senderInfo = senderStr
-                messageBodyInfo = messageBodyStr
-                type = .All
-            } else if senderStr.count == 0 {
-                messageBodyInfo = messageBodyStr
-                type = .Message
-            } else if messageBodyStr.count == 0 {
-                senderInfo = senderStr
-                type = .Sender
-            }
-        } else if let senderStr = sender {
-            if senderStr.count > 0 {
-                senderInfo = senderStr
-                type = .Sender
-            }
-        } else if let messageBodyStr = messageBody {
-            if messageBodyStr.count > 0 {
-                messageBodyInfo = messageBodyStr
-                type = .Message
-            }
-        }
+    public class func filterMessage(sender: String?, messageBody: String?) -> (Bool, FilterInfo?) {
+        let senderInfo = sender ?? ""
+        let messageBodyInfo = messageBody ?? ""
         
             guard let filterArray = DataStoreManager.allFilterData() else {
-                return false
+                return (false, nil)
             }
             var match = false
             for filterInfo in filterArray {
-                switch type {
-                case .All:
-                    if filterInfo.messageBody {
+                if filterInfo.messageBody {
+                    if messageBodyInfo.count > 0 {
                         match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
-                    } else {
+                    }
+                } else {
+                    if senderInfo.count > 0 {
                         match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
                     }
-                    break
-                case .Sender:
-                    if filterInfo.messageBody {
-                        break
-                    }
-                    match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
-                case .Message:
-                    if filterInfo.messageBody {
-                        match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
-                    }
-                    break
-                case .None:
-                    break
                 }
                 if match {
-                    return true
+                    return (true, filterInfo)
                 }
             }
-        return false
+        return (false, nil)
     }
     
     public class func getfilterMessageResult(rule: String, content: String, regular: Bool) -> [NSTextCheckingResult]? {
