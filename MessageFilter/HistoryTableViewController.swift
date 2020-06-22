@@ -10,15 +10,14 @@ import UIKit
 import MessageFilterKit
 class HistoryTableViewController: UITableViewController {
 
-    let historyData = DataStoreManager.allData() ?? [:]
-    var historyKeys: [String]!
+    let historyData: NSMutableDictionary = DataStoreManager.allData() as! NSMutableDictionary
+    var historyKeys = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        historyKeys = historyData.allKeys as? [String]
+        historyKeys = historyData.allKeys as! [String]
         historyKeys = historyKeys.sorted()
         
-        print(historyKeys as Any)
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "reuseIdentifier")
     }
 
@@ -57,17 +56,7 @@ class HistoryTableViewController: UITableViewController {
         cell.textLabel?.text = filterInfo.saveMessage()
         return cell
     }
-    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    
-
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -76,36 +65,19 @@ class HistoryTableViewController: UITableViewController {
             let values = historyData[key] as? NSArray
             if let value = values {
                 let mValues = value.mutableCopy() as! NSMutableArray
+                DataStoreManager.delete(filterInfo: mValues[indexPath.row] as! FilterInfo, fileName: key)
                 mValues.removeObject(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+                if mValues.count == 0 {
+                    historyData.removeObject(forKey: key)
+                    historyKeys.remove(at: historyKeys.firstIndex(of: key)!)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                } else {
+                    historyData.setValue(mValues, forKey: key)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
             }
         } 
     }
-    
-*/
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
