@@ -22,6 +22,8 @@ class RuleTestViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        filterMessageTextView.layer.borderColor = UIColor.hex(0xE3E3E3).cgColor
+        filterResultTextView.layer.borderColor = UIColor.hex(0xE3E3E3).cgColor
     }
 
     @IBAction func filterBtnAction(_ sender: UIButton) {
@@ -31,6 +33,10 @@ class RuleTestViewController: UIViewController {
         let (match, filterInfo) = MessageFilterManager.filterMessage(sender: senderStr, messageBody: messageStr)
         if match {
             filterResultTextView.text = filterInfo?.saveMessage()
+        } else {
+            if let filter = filterInfo {
+                filterResultTextView.text = filter.saveMessage()
+            }
         }
         
     }

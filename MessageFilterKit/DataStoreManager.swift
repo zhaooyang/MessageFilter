@@ -15,16 +15,18 @@ public struct FilterInfo {
     public var messageBody: Bool   // 是否为消息体
     public var regular: Bool       // 是否为正则
     public var rule: String        // 规则
+    public var allow: Bool         // 白名单
     
-    public init(rule: String = "", messageBody: Bool = true, regular: Bool = false) {
+    public init(rule: String = "", messageBody: Bool = true, regular: Bool = false, allow: Bool = false) {
         self.messageBody = messageBody
         self.regular = regular
         self.rule = rule
+        self.allow = allow
     }
     
     public func saveMessage() -> String {
         if rule.count > 0 {
-            return String(messageBody) + "|+|" + String(regular) + "|+|" + rule
+            return String(messageBody) + "|+|" + String(regular) + "|+|" + String(allow) + "|+|" + rule
         }
         return ""
     }
@@ -32,11 +34,13 @@ public struct FilterInfo {
     static func fetchModel(_ saveMessage: String) -> FilterInfo? {
         if saveMessage.count > 0 {
             let array = saveMessage.components(separatedBy: "|+|")
-            if array.count == 3 {
+            if array.count == 4 {
                 var filterInfo = FilterInfo()
                 filterInfo.messageBody = FilterInfo.getBoolValue(array[0])
                 filterInfo.regular = FilterInfo.getBoolValue(array[1])
-                filterInfo.rule = array[2]
+                filterInfo.allow = FilterInfo.getBoolValue(array[2])
+                filterInfo.rule = array[3]
+                
                 return filterInfo
             }
         }
@@ -79,23 +83,29 @@ public class DataStoreManager: NSObject {
     }
     
     
-    class func allFilterData() -> Array<FilterInfo>? {
+    class func allFilterData() -> (Array<FilterInfo>?, Array<FilterInfo>?) {
         if let cacheDate = NSArray(contentsOf: cachePath(fileName: keyCacheDate)) {
+            var allAllowData = [FilterInfo]()
             var allData = [FilterInfo]()
             for fileName in cacheDate {
                 if let array = NSArray(contentsOf: cachePath(fileName: fileName as! String)) {
                     for message in array {
                         if let messageStr: String = message as? String {
                             if messageStr.count > 0 {
-                                allData.append(FilterInfo.fetchModel(messageStr)!)
+                                let filterInfo = FilterInfo.fetchModel(messageStr)!
+                                if filterInfo.allow {
+                                    allAllowData.append(filterInfo)
+                                } else {
+                                    allData.append(filterInfo)
+                                }
                             }
                         }
                     }
                 }
             }
-            return allData
+            return (allAllowData, allData)
         }
-        return nil
+        return (nil, nil)
     }
     
     

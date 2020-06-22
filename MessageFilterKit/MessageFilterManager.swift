@@ -15,26 +15,72 @@ public class MessageFilterManager: NSObject {
         let senderInfo = sender ?? ""
         let messageBodyInfo = messageBody ?? ""
         
-            guard let filterArray = DataStoreManager.allFilterData() else {
-                return (false, nil)
+        let (allowArray, filterArray) = DataStoreManager.allFilterData()
+        if allowArray == nil && filterArray == nil {
+            return (false, nil)
+        }
+        
+        if let allowArrayData = allowArray {
+            if allowArrayData.count > 0 {
+                return filter(sender: senderInfo, messageBody: messageBodyInfo, filterData: allowArrayData)
             }
-            var match = false
-            for filterInfo in filterArray {
-                if filterInfo.messageBody {
-                    if messageBodyInfo.count > 0 {
-                        match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
-                    }
-                } else {
-                    if senderInfo.count > 0 {
-                        match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
-                    }
+            
+        }
+        if let filterArrayData = filterArray {
+            if filterArrayData.count > 0 {
+                return filter(sender: senderInfo, messageBody: messageBodyInfo, filterData: filterArrayData)
+            }
+        }
+        
+        
+//
+//            var match = false
+//            for filterInfo in filterArray {
+//                if filterInfo.messageBody {
+//                    if messageBodyInfo.count > 0 {
+//                        match = filterResult(message: messageBodyInfo, regular: filterInfo.regular, rule: filterInfo.rule)
+//                    }
+//                } else {
+//                    if senderInfo.count > 0 {
+//                        match = filterResult(message: senderInfo, regular: filterInfo.regular, rule: filterInfo.rule)
+//                    }
+//                }
+//                if match {
+//                    if filterInfo.allow {
+//                        return (false, filterInfo)
+//                    } else {
+//                        return (true, filterInfo)
+//                    }
+//                }
+//        }
+        return (false, nil)
+    }
+    
+    public class func filter(sender: String, messageBody: String, filterData: Array<FilterInfo>) -> (Bool, FilterInfo?) {
+        var match = false
+        for filterInfo in filterData {
+            if filterInfo.messageBody {
+                if messageBody.count > 0 {
+                    match = filterResult(message: messageBody, regular: filterInfo.regular, rule: filterInfo.rule)
                 }
-                if match {
+            } else {
+                if sender.count > 0 {
+                    match = filterResult(message: sender, regular: filterInfo.regular, rule: filterInfo.rule)
+                }
+            }
+            if match {
+                if filterInfo.allow {
+                    return (false, filterInfo)
+                } else {
                     return (true, filterInfo)
                 }
             }
+        }
         return (false, nil)
     }
+    
+    
+    
     
     public class func getfilterMessageResult(rule: String, content: String, regular: Bool) -> [NSTextCheckingResult]? {
         if rule.count == 0 || content.count == 0 {

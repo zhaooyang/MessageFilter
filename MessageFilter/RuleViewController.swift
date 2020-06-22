@@ -15,6 +15,7 @@ class RuleViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var senderBtn: UIButton!
     @IBOutlet weak var messageBodyBtn: UIButton!
     @IBOutlet weak var regularBtn: UIButton!
+    @IBOutlet weak var allowBtn: UIButton!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var filterResultTextView: UITextView!
     
@@ -26,6 +27,8 @@ class RuleViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         customNaviBar()
         messageBodyBtn.isSelected = true
         messageBodyBtn.backgroundColor = .blue
+        messageTextView.layer.borderColor = UIColor.hex(0xE3E3E3).cgColor
+        filterResultTextView.layer.borderColor = UIColor.hex(0xE3E3E3).cgColor
     }
 
     
@@ -64,7 +67,17 @@ class RuleViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             sender.backgroundColor = .lightGray
         }
     }
- 
+    
+    
+    @IBAction func allowBtnAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            sender.backgroundColor = .blue
+        } else {
+            sender.backgroundColor = .lightGray
+        }
+    }
+    
     @IBAction func filterTestBtnAction(_ sender: UIButton) {
         view.endEditing(true)
         guard let textFileldInput = ruleTextFileld.text else {
@@ -144,6 +157,7 @@ class RuleViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             var filterInfo = FilterInfo()
             filterInfo.messageBody = self.messageBodyBtn.isSelected
             filterInfo.regular = self.regularBtn.isSelected
+            filterInfo.allow = self.allowBtn.isSelected
             filterInfo.rule = rule
             DataStoreManager.save(filterInfo: filterInfo)
         })

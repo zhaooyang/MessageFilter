@@ -24,6 +24,7 @@
 		0C4E195824937B0900CA608A /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4E195724937B0900CA608A /* DataStoreManager.swift */; };
 		0CD039912498556900B3B6E5 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD039902498556900B3B6E5 /* HistoryTableViewController.swift */; };
 		0CD039952498614400B3B6E5 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD039942498614400B3B6E5 /* RuleViewController.swift */; };
+		0CD6888824A078FC00CEF4E7 /* CustomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6888724A078FC00CEF4E7 /* CustomExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		0C4E195724937B0900CA608A /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		0CD039902498556900B3B6E5 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		0CD039942498614400B3B6E5 /* RuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
+		0CD6888724A078FC00CEF4E7 /* CustomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				0CD039902498556900B3B6E5 /* HistoryTableViewController.swift */,
 				0CD039942498614400B3B6E5 /* RuleViewController.swift */,
 				0C2A07AD249B66F8007FEF1D /* RuleTestViewController.swift */,
+				0CD6888724A078FC00CEF4E7 /* CustomExtension.swift */,
 				0C4E18F1249360D100CA608A /* Main.storyboard */,
 				0C4E18F4249360DC00CA608A /* Assets.xcassets */,
 				0C4E18F6249360DC00CA608A /* LaunchScreen.storyboard */,
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD6888824A078FC00CEF4E7 /* CustomExtension.swift in Sources */,
 				0CD039912498556900B3B6E5 /* HistoryTableViewController.swift in Sources */,
 				0C2A07AE249B66F8007FEF1D /* RuleTestViewController.swift in Sources */,
 				0C4E18F0249360D100CA608A /* ViewController.swift in Sources */,

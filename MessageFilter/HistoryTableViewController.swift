@@ -10,7 +10,7 @@ import UIKit
 import MessageFilterKit
 class HistoryTableViewController: UITableViewController {
 
-    let historyData: NSMutableDictionary = DataStoreManager.allData() as! NSMutableDictionary
+    let historyData: NSMutableDictionary = DataStoreManager.allData() as? NSMutableDictionary ?? [:]
     var historyKeys = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
