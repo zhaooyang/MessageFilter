@@ -36,6 +36,8 @@ class RuleTestViewController: UIViewController {
         } else {
             if let filter = filterInfo {
                 filterResultTextView.text = filter.saveMessage()
+            } else {
+                filterResultTextView.text = "未匹配到任何规则"
             }
         }
         

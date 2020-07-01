@@ -148,10 +148,17 @@ class RuleViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         }
         
         if regularBtn.isSelected {
-            message += "3. 使用正则表达式进行匹配"
+            message += "3. 使用正则表达式进行匹配\n"
         } else {
-            message += "3. 使用包含方式进行匹配"
+            message += "3. 使用包含方式进行匹配\n"
         }
+        
+        if allowBtn.isSelected {
+            message += "4. 使用白名单模式(匹配不过滤)"
+        } else {
+            message += "4. 使用黑名单模式(匹配过滤)"
+        }
+        
         let alertController = UIAlertController(title: "过滤规则", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "确定", style: .default) { action in
             var filterInfo = FilterInfo()
