@@ -22,7 +22,10 @@ public class MessageFilterManager: NSObject {
         
         if let allowArrayData = allowArray {
             if allowArrayData.count > 0 {
-                return filter(sender: senderInfo, messageBody: messageBodyInfo, filterData: allowArrayData)
+                let (match, filterInfo) = filter(sender: senderInfo, messageBody: messageBodyInfo, filterData: allowArrayData)
+                if !match && filterInfo != nil {
+                    return (match, filterInfo)
+                }
             }
             
         }
@@ -59,6 +62,7 @@ public class MessageFilterManager: NSObject {
     public class func filter(sender: String, messageBody: String, filterData: Array<FilterInfo>) -> (Bool, FilterInfo?) {
         var match = false
         for filterInfo in filterData {
+            print(filterInfo.saveMessage())
             if filterInfo.messageBody {
                 if messageBody.count > 0 {
                     match = filterResult(message: messageBody, regular: filterInfo.regular, rule: filterInfo.rule)
