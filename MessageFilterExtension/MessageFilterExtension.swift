@@ -18,13 +18,6 @@ extension MessageFilterExtension: ILMessageFilterQueryHandling {
         let offlineAction = self.offlineAction(for: queryRequest)
 
         switch offlineAction {
-        case .allow, .filter:
-            // Based on offline data, we know this message should either be Allowed or Filtered. Send response immediately.
-            let response = ILMessageFilterQueryResponse()
-            response.action = offlineAction
-
-            completion(response)
-
         case .none:
             // Based on offline data, we do not know whether this message should be Allowed or Filtered. Defer to network.
             // Note: Deferring requests to network requires the extension target's Info.plist to contain a key with a URL to use. See documentation for details.
@@ -41,9 +34,38 @@ extension MessageFilterExtension: ILMessageFilterQueryHandling {
 
                 completion(response)
             }
+        default:
+            // Based on offline data, we know this message should either be Allowed or Filtered. Send response immediately.
+            let response = ILMessageFilterQueryResponse()
+            response.action = offlineAction
 
-        @unknown default:
-            break
+            completion(response)
+//
+//        case .allow, .filter, .junk:
+//            // Based on offline data, we know this message should either be Allowed or Filtered. Send response immediately.
+//            let response = ILMessageFilterQueryResponse()
+//            response.action = offlineAction
+//
+//            completion(response)
+//
+//        case .none:
+//            // Based on offline data, we do not know whether this message should be Allowed or Filtered. Defer to network.
+//            // Note: Deferring requests to network requires the extension target's Info.plist to contain a key with a URL to use. See documentation for details.
+//            context.deferQueryRequestToNetwork() { (networkResponse, error) in
+//                let response = ILMessageFilterQueryResponse()
+//                response.action = .none
+//
+//                if let networkResponse = networkResponse {
+//                    // If we received a network response, parse it to determine an action to return in our response.
+//                    response.action = self.action(for: networkResponse)
+//                } else {
+//                    NSLog("Error deferring query request to network: \(String(describing: error))")
+//                }
+//
+//                completion(response)
+//            }
+//        @unknown default:
+//            break
         }
     }
 

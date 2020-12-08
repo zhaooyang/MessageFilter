@@ -54,6 +54,7 @@ class HistoryTableViewController: UITableViewController {
         let values = historyData[key] as! NSArray
         let filterInfo = values[indexPath.row] as! FilterInfo
         cell.textLabel?.text = filterInfo.saveMessage()
+        print(filterInfo.saveMessage())
         return cell
     }
 
